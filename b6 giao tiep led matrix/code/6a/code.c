@@ -22,9 +22,7 @@ void D(){
 }
 void main(){
 	while(1){
-		//D();
-		P3=0x00;
-		P2=0xFF;
+		D();
 	}
 	
 }
