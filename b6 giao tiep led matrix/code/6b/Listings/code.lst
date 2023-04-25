@@ -1,0 +1,74 @@
+C51 COMPILER V9.60.0.0   CODE                                                              04/21/2023 15:33:45 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN .\Objects\code.obj
+COMPILER INVOKED BY: C:\Keil C\C51\BIN\C51.EXE code.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\code.
+                    -lst) TABS(2) OBJECT(.\Objects\code.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          unsigned char s8[8]={0xFF,0x89,0x76,0x76,0x76,0x76,0x89,0xFF}; 
+   3          unsigned char a[8];
+   4          unsigned int i;
+   5          unsigned int j;
+   6          void delay(int t){
+   7   1        unsigned int j;
+   8   1        for(j=0;j<t;j++){
+   9   2          TMOD=0x01;
+  10   2          TH0=0xFC; //delay 1ms
+  11   2          TL0=0x18;
+  12   2          TR0=1;
+  13   2          while(!TF0);
+  14   2          TF0=0;
+  15   2          TR0=0;
+  16   2        }
+  17   1      }
+  18          void hien_so(){
+  19   1        for(i=0;i<=7;i++){
+  20   2          P2=0x80>>i; // quet theo cot
+  21   2          P3=s8[i];
+  22   2          delay(1);
+  23   2        }
+  24   1      }
+  25          void dich_so(){
+  26   1        unsigned int k;
+  27   1        for(k=0;k<50;k++){
+  28   2          hien_so();
+  29   2        }
+  30   1        a[0]=s8[7];
+  31   1        for(i=1;i<=7;i++){
+  32   2          a[i]=s8[i-1];
+  33   2        }
+  34   1        for(i=0;i<=7;i++){
+  35   2          s8[i]=a[i];
+  36   2        }
+  37   1      }
+  38          void main(){
+  39   1        while(1){
+  40   2          //dich_so();
+  41   2          P3=0x00;
+  42   2          P2=0xFF;
+  43   2        }
+  44   1      }
+  45          
+  46          
+  47            
+  48          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    184    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   CODE                                                              04/21/2023 15:33:45 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     20    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
