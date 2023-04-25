@@ -1,0 +1,79 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    04/12/2023  15:50:48  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL C\C51\BIN\BL51.EXE .\Objects\code.obj TO .\Objects\codect1 PRINT (.\Listings\codect1.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\code.obj (CODE)
+  C:\KEIL C\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL C\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\codect1 (CODE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?CODE
+            IDATA   0012H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     000DH     UNIT         ?C_INITSEG
+            CODE    009CH     0008H     UNIT         ?PR?_D?CODE
+            CODE    00A4H     0007H     UNIT         ?PR?MAIN?CODE
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\codect1 (CODE)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?CODE
+  +--> ?C_INITSEG
+
+?PR?MAIN?CODE
+  +--> ?PR?_D?CODE
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\codect1 (CODE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        CODE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  C:00A4H         PUBLIC        main
+  C:009CH         PUBLIC        _D
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  04/12/2023  15:50:48  PAGE 2
+
+
+  D:0008H         PUBLIC        num
+  -------         PROC          _D
+  D:0006H         SYMBOL        i
+  C:009CH         LINE#         3
+  C:009CH         LINE#         4
+  C:00A3H         LINE#         5
+  -------         ENDPROC       _D
+  -------         PROC          MAIN
+  C:00A4H         LINE#         6
+  C:00A4H         LINE#         7
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        CODE
+
+Program Size: data=19.0 xdata=0 code=171
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
