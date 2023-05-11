@@ -1,0 +1,4 @@
+".\Objects\code.obj",
+".\Objects\thuvienLCD.obj" 
+TO ".\Objects\code8.2" 
+PRINT(".\Listings\code8.m51")
