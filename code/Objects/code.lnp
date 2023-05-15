@@ -1,4 +1,0 @@
-".\Objects\code.obj",
-".\Objects\thuvienLCD.obj" 
-TO ".\Objects\code" 
-PRINT(".\Listings\code.m51")
