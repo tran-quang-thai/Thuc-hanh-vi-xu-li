@@ -1,0 +1,132 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    05/17/2023  15:58:41  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL C\C51\BIN\BL51.EXE .\Objects\code.obj TO .\Objects\code PRINT (.\Listings\code.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\code.obj (CODE)
+  C:\KEIL C\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL C\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\code (CODE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?CODE
+            IDATA   0012H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?C_C51STARTUP
+            CODE    008FH     0034H     UNIT         ?PR?UART_SENDDATA?CODE
+            CODE    00C3H     0012H     UNIT         ?PR?MAIN?CODE
+            CODE    00D5H     0011H     UNIT         ?PR?UART_INIT?CODE
+            CODE    00E6H     000DH     UNIT         ?C_INITSEG
+            CODE    00F3H     000BH     UNIT         ?PR?_DELAY?CODE
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\code (CODE)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?CODE
+  +--> ?C_INITSEG
+
+?PR?MAIN?CODE
+  +--> ?PR?UART_INIT?CODE
+  +--> ?PR?_DELAY?CODE
+  +--> ?PR?UART_SENDDATA?CODE
+
+?PR?UART_SENDDATA?CODE
+  +--> ?PR?_DELAY?CODE
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\code (CODE)
+
+  VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/17/2023  15:58:41  PAGE 2
+
+
+  ----------------------------------
+
+  -------         MODULE        CODE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0080H.0       PUBLIC        P0_0
+  B:0080H.1       PUBLIC        P0_1
+  C:00F3H         PUBLIC        _delay
+  B:0098H.1       PUBLIC        TI
+  C:00C3H         PUBLIC        main
+  C:008FH         PUBLIC        UART_SendData
+  D:0099H         PUBLIC        SBUF
+  C:00D5H         PUBLIC        UART_Init
+  D:0089H         PUBLIC        TMOD
+  D:0008H         PUBLIC        mssv
+  D:008DH         PUBLIC        TH1
+  B:0098H.7       PUBLIC        SM0
+  B:0098H.6       PUBLIC        SM1
+  B:0088H.6       PUBLIC        TR1
+  B:0098H.4       PUBLIC        REN
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        t
+  C:00F3H         LINE#         6
+  C:00F3H         LINE#         7
+  C:00FDH         LINE#         8
+  -------         ENDPROC       _DELAY
+  -------         PROC          UART_INIT
+  C:00D5H         LINE#         10
+  C:00D5H         LINE#         11
+  C:00D7H         LINE#         12
+  C:00D9H         LINE#         13
+  C:00DCH         LINE#         14
+  C:00DFH         LINE#         15
+  C:00E1H         LINE#         16
+  C:00E3H         LINE#         17
+  C:00E5H         LINE#         18
+  -------         ENDPROC       UART_INIT
+  -------         PROC          UART_SENDDATA
+  -------         DO            
+  D:0002H         SYMBOL        i
+  -------         ENDDO         
+  C:008FH         LINE#         20
+  C:008FH         LINE#         22
+  C:0092H         LINE#         23
+  C:00A2H         LINE#         24
+  C:00A4H         LINE#         25
+  C:00A7H         LINE#         26
+  C:00A9H         LINE#         27
+  C:00B0H         LINE#         28
+  C:00B7H         LINE#         30
+  C:00C2H         LINE#         32
+  -------         ENDPROC       UART_SENDDATA
+  -------         PROC          MAIN
+  C:00C3H         LINE#         34
+  C:00C3H         LINE#         35
+  C:00C6H         LINE#         36
+  C:00C6H         LINE#         37
+  C:00C9H         LINE#         38
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  05/17/2023  15:58:41  PAGE 3
+
+
+  C:00D0H         LINE#         39
+  C:00D3H         LINE#         40
+  C:00D3H         LINE#         42
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        CODE
+
+Program Size: data=19.0 xdata=0 code=254
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
