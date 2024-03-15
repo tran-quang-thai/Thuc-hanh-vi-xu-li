@@ -14,3 +14,4 @@
 <p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=tran-quang-thai&show_icons=true&locale=en" alt="tran-quang-thai" /></p>
 
 <p><img align="center" src="https://github-readme-streak-stats.herokuapp.com/?user=tran-quang-thai&" alt="tran-quang-thai" /></p>
+<h3 align="left">Cách tải file về máy/</h3>
