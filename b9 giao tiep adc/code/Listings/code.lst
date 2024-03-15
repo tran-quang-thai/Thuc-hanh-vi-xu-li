@@ -1,0 +1,93 @@
+C51 COMPILER V9.60.0.0   CODE                                                              05/17/2023 16:30:11 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CODE
+OBJECT MODULE PLACED IN .\Objects\code.obj
+COMPILER INVOKED BY: C:\Keil C\C51\BIN\C51.EXE code.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\code.
+                    -lst) TABS(2) OBJECT(.\Objects\code.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          
+   3          #define ADC0808_DATA  P3
+   4          #define ADC0808_A     P1_0
+   5          #define ADC0808_B     P1_1
+   6          #define ADC0808_C     P1_2
+   7          #define ADC0808_ALE   P1_3
+   8          #define ADC0808_START P1_4
+   9          #define ADC0808_EOC   P1_5
+  10          #define ADC0808_OE    P1_6
+  11          #define ADC0808_CLK   P1_7
+  12          
+  13          unsigned char LED[] = {0xC0, 0xF9, 0xA4, 0xB0, 0x99, 0x92, 0x82, 0xF8, 0x80, 0x90};
+  14          
+  15          void INT() interrupt 1 {
+  16   1        P1_7=~P1_7;
+  17   1      }
+  18          
+  19          unsigned char ADC0808_Read(unsigned char channel){
+  20   1        unsigned char result;
+  21   1        ADC0808_A = channel & 0x01;
+  22   1        ADC0808_B = channel & 0x02;
+  23   1        ADC0808_C = channel & 0x04;
+  24   1        ADC0808_ALE = 1;
+  25   1        ADC0808_START = 1;
+  26   1        ADC0808_ALE = 0;
+  27   1        ADC0808_START = 0;
+  28   1        ADC0808_OE = 1;
+  29   1        result = ADC0808_DATA;
+  30   1        ADC0808_OE = 0;
+  31   1        return result;
+  32   1      }
+  33          
+  34          void delay(unsigned int t){
+  35   1        unsigned int i;
+  36   1        for(i=0;i<t;i++){
+  37   2          TMOD=0x01;
+  38   2          TH0=0xFC; //delay 1us
+  39   2          TL0=0x18;
+  40   2          TR0=1;
+  41   2          while(!TF0); 
+  42   2          TF0=0;
+  43   2          TR0=0;
+  44   2        }
+  45   1      }
+  46          
+  47            
+  48          void main(){
+  49   1        unsigned char temp;
+  50   1        TMOD=0x01;
+  51   1        TH0=0xFF;
+  52   1        TL0=0xFF;
+  53   1        TR0=1;
+  54   1        EA=1;
+C51 COMPILER V9.60.0.0   CODE                                                              05/17/2023 16:30:11 PAGE 2   
+
+  55   1        ET0=1;
+  56   1        while(1){
+  57   2          temp=ADC0808_Read(0);
+  58   2          P0_0 = 1;
+  59   2          P2 = LED[temp/10]; // hang chuc
+  60   2          delay(66);
+  61   2          P0_0 = 0;
+  62   2          P0_1 = 1;
+  63   2          P2 = LED[temp%10]; // hang don vi
+  64   2          delay(66);
+  65   2          P0_1 = 0;
+  66   2        }
+  67   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    133    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
